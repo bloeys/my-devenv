@@ -1,5 +1,7 @@
 # my-devenv
 
+Folder structure in the repo denote position in the FS.
+
 ## Fisher plugins
 
 * jethrokuan/z
