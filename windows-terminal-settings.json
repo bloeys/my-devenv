@@ -8,7 +8,7 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
 
-    "startupActions": "sp -V; sp -H; mf left; sp -H; mf up",
+    "startupActions": "sp -H; sp -V; mf up; sp -V; mf up",
     "defaultProfile": "{0da8cec4-7cea-4823-89c9-50a8d70c53ff}",
 
     // You can add more global application settings here.
@@ -19,7 +19,8 @@
 
     // If enabled, formatted data is also copied to your clipboard
     "copyFormatting": false,
-
+    "launchMode": "maximized",
+    
     // A profile specifies a command to execute paired with information about how it should look and feel.
     // Each one of them will appear in the 'New Tab' dropdown,
     //   and can be invoked from the commandline with `wt.exe -p xxx`
