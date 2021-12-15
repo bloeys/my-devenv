@@ -2,17 +2,24 @@ set fish_greeting
 
 if not ps -a | grep ssh-agent>/dev/null
 
-  if not test -e /cygdrive/c/Users/user/.config/fish/myFishConfigLock
-    touch /cygdrive/c/Users/user/.config/fish/myFishConfigLock
+  set lockFile '/cygdrive/c/Users/user/.config/fish/myFishConfigLock'
+  if not test -e $lockFile
 
-    eval (ssh-agent -c)
-    set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
-    set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+    echo $fish_pid > $lockFile
+    sleep 0.25
 
-    ssh-add ~/.ssh/id_rsa
-    ssh-add ~/.ssh/*.key
+    set lockPID (head $lockFile)
+    if test $lockPID = $fish_pid
 
-    rm /cygdrive/c/Users/user/.config/fish/myFishConfigLock
+        eval (ssh-agent -c)
+        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+
+        ssh-add ~/.ssh/id_rsa
+        ssh-add ~/.ssh/*.key
+
+        rm $lockFile
+     end
   end
 end
 
