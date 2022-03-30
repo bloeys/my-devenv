@@ -24,10 +24,16 @@ if not ps -a | grep ssh-agent>/dev/null
 end
 
 # Custom aliases
+
+function gobr --description 'alias gobr=go build -o o.exe .; and ./o.exe $argv; rm ./o.exe'
+    go build -o o.exe .
+    ./o.exe $argv
+    rm ./o.exe
+end
+
 alias gcp='git commit -a; and git push'
 alias gd='git diff'
 alias gs='git status'
-alias gobr='go build -o o.exe .; and ./o.exe; and rm ./o.exe'
 alias ll='ls -al'
 alias got='gotest -count=1 ./...'
 alias python='/cygdrive/c/Users/user/AppData/Local/Programs/Python/Python37/python.exe'
