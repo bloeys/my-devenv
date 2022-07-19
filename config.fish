@@ -27,14 +27,16 @@ end
 
 function gobr --description 'alias gobr=go build -o o.exe .; and ./o.exe $argv; rm ./o.exe'
     go build -o o.exe .
-    ./o.exe $argv
-    rm ./o.exe
+    if test $status = "0"
+        ./o.exe $argv
+        rm ./o.exe
+    end
 end
 
 alias gcp='git commit -a; and git push'
 alias gd='git diff'
 alias gs='git status'
-alias ll='ls -al'
+alias ll='ls -alh'
 alias got='gotest -count=1 ./...'
 alias python='/cygdrive/c/Users/user/AppData/Local/Programs/Python/Python37/python.exe'
 alias python3='/cygdrive/c/Users/user/AppData/Local/Programs/Python/Python37/python.exe'
